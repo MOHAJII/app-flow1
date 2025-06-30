@@ -3,7 +3,7 @@ import { DevicePanel } from './components/DevicePanel';
 import { MiddlewarePanel } from './components/MiddlewarePanel';
 import { SchoolAppPanel } from './components/SchoolAppPanel';
 import { EventLog } from './components/EventLog';
-import { DoorComponent } from './components/DoorComponent';
+import { IntegratedAccessPoint } from './components/IntegratedAccessPoint';
 
 export interface EventLogEntry {
   id: string;
@@ -261,24 +261,22 @@ function App() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Left Panel - Device */}
-          <div className="relative">
-            <DevicePanel 
-              status={state.deviceStatus}
-              onUserScan={simulateUserScan}
-              currentUser={state.currentUser}
-              userType={state.userType}
-            />
-            <DoorComponent isOpen={state.isDoorOpen} />
-          </div>
+          {/* Left Panel - Middleware */}
+          <IntegratedAccessPoint
+            deviceStatus={state.deviceStatus}
+            isDoorOpen={state.isDoorOpen}
+            onUserScan={simulateUserScan}
+            currentUser={state.currentUser}
+            userType={state.userType}
+          />
 
-          {/* Middle Panel - Middleware */}
+          {/* Middle Panel - School App */}
           <MiddlewarePanel 
             status={state.middlewareStatus}
             activeProtocol={state.activeProtocol}
           />
 
-          {/* Right Panel - School App */}
+          {/* Right Panel - Integrated Access Point */}
           <SchoolAppPanel 
             status={state.appStatus}
             currentSession={state.currentSession}
